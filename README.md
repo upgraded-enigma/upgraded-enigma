@@ -1,6 +1,6 @@
-# NxNgStarter
+# Upgraded Enigma
 
-Angular NestJS Nx starter project with workflow automation.
+Organizer and productivity tools.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
@@ -61,16 +61,16 @@ Applications as well as generated documentation, testing reports, and a custom c
 
 ### Webapp
 
-- [Nx Ng Starter](https://upgraded-enigma.web.app)
+- [Upgraded Enigma](https://upgraded-enigma.web.app)
 
 ### Elements webapp
 
-- [Nx Ng Starter Elements](https://upgraded-enigma-elements.web.app)
+- [Upgraded Enigma Elements](https://upgraded-enigma-elements.web.app)
 
 ### Documentation
 
-- [Nx Ng Starter Documentation](https://upgraded-enigma-documentation.web.app)
-- [Nx Ng Starter Compodoc](https://upgraded-enigma-documentation.web.app/assets/compodoc/index.html)
+- [Upgraded Enigma Documentation](https://upgraded-enigma-documentation.web.app)
+- [Upgraded Enigma Compodoc](https://upgraded-enigma-documentation.web.app/assets/compodoc/index.html)
 
 #### Unit coverage
 
