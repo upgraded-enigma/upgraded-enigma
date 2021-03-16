@@ -9,7 +9,7 @@ const platform: string = Capacitor.getPlatform();
 export const environment: IWebClientAppEnvironment = {
   production: true,
   platform,
-  appName: 'Nx Ng Starter Client',
+  appName: 'Upgraded Enigma Client',
   api:
     platform !== 'web'
       ? 'https://nx-ng-starter.web.app/api'

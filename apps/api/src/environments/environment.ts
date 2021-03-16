@@ -8,6 +8,6 @@ import { ApiEnvironment } from '@nx-ng-starter/backend-interfaces';
  */
 export const environment: ApiEnvironment = {
   production: false,
-  appName: 'Nx Ng Starter API',
+  appName: 'Upgraded Enigma API',
   wsPort: 8081,
 };
