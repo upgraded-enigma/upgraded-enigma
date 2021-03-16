@@ -25,7 +25,7 @@ export const backendGrpcClientOptions: (env: ApiEnvironment) => ClientOptions = 
   transport: Transport.GRPC,
   options: {
     url: rpcUrl,
-    package: ['nxngstarter'],
+    package: ['upgradedenigma'],
     protoPath: protoPaths(env),
   },
 });
