@@ -4,7 +4,7 @@ Angular NestJS Nx starter project with workflow automation.
 
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
-![Master](https://github.com/rfprod/upgraded-enigma/workflows/Master/badge.svg) ![PR validation](https://github.com/rfprod/upgraded-enigma/workflows/PR%20validation/badge.svg)
+![Master](https://github.com/anisotropic-works/upgraded-enigma/workflows/Master/badge.svg) ![PR validation](https://github.com/anisotropic-works/upgraded-enigma/workflows/PR%20validation/badge.svg)
 
 ## Requirements
 
@@ -53,7 +53,7 @@ git cz
 
 Is generated based on GitHub repo.
 
-- [GitBook documentation](https://rfprod.gitbook.io/upgraded-enigma/)
+- [GitBook documentation](https://anisotropic-works.gitbook.io/upgraded-enigma/)
 
 ## Firebase deployment
 
