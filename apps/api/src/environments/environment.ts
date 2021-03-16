@@ -1,4 +1,4 @@
-import { ApiEnvironment } from '@nx-ng-starter/backend-interfaces';
+import { ApiEnvironment } from '@upgraded-enigma/backend-interfaces';
 
 /**
  * Development environment variables.
