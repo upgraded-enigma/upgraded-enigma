@@ -8,7 +8,7 @@
         "headers": [
           {
             "key": "Access-Control-Allow-Origin",
-            "value": "https://nx-ng-starter.firebaseapp.com https://nx-ng-starter.web.app"
+            "value": "https://organizer-833bc.firebaseapp.com https://organizer-833bc.web.app"
           },
           {
             "key": "Access-Control-Allow-Methods",
