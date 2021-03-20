@@ -43,7 +43,13 @@ module.exports = {
     ],
     'eslint-comments/disable-enable-pair': ['error', { allowWholeFile: false }],
     'eslint-comments/require-description': ['error', { ignore: [] }],
-    'eslint-comments/no-restricted-disable': ['error', '*', '!no-console', '!prettier'],
+    'eslint-comments/no-restricted-disable': [
+      'error',
+      '*',
+      '!no-console',
+      '!prettier',
+      '!max-lines-per-function',
+    ],
     '@typescript-eslint/await-thenable': 'error',
     '@typescript-eslint/ban-ts-comment': 'error',
     '@typescript-eslint/ban-types': [
