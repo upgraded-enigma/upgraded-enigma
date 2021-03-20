@@ -190,7 +190,7 @@ module.exports = {
       {
         ignoreNumericLiteralTypes: true,
         ignoreReadonlyClassProperties: true,
-        ignore: [-1, 0, 1] /* ignore -1, and binary*/,
+        ignore: [-1, 0, 1, 2] /* ignore -1, binary, and common divisor 2*/,
         ignoreEnums: true /* ignore enumerators so that numeric values can be grouped via enums instead of constants */,
       },
     ],
