@@ -117,7 +117,7 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "eslintConfig": "libs/backend-diagnostics/.eslintrc.json",
-            "lintFilePatterns": ["libs/proto/**/*.ts"]
+            "lintFilePatterns": ["libs/backend-diagnostics/**/*.ts"]
           }
         },
         "test": {
@@ -702,6 +702,29 @@
       "projectType": "application",
       "root": "apps/client-diagnostics-e2e",
       "sourceRoot": "apps/client-diagnostics-e2e/src"
+    },
+    "client-directives": {
+      "architect": {
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "eslintConfig": "libs/client-directives/.eslintrc.json",
+            "lintFilePatterns": ["libs/client-directives/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/client-directives/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/client-directives"]
+        }
+      },
+      "prefix": "upgraded-enigma",
+      "projectType": "library",
+      "root": "libs/client-directives",
+      "sourceRoot": "libs/client-directives/src"
     },
     "client-e2e": {
       "architect": {
@@ -1501,6 +1524,26 @@
             "commands": [
               {
                 "command": "npx ts-node -P ./tools/tsconfig.tools.json ./tools/ts/update.ts --check"
+              }
+            ]
+          }
+        },
+        "set-client-env": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx ts-node -P ./tools/tsconfig.tools.json ./tools/ts/set-client-env.ts"
+              }
+            ]
+          }
+        },
+        "reset-client-env": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx ts-node -P ./tools/tsconfig.tools.json ./tools/ts/set-client-env.ts --reset=true && npx nx lint client --fix"
               }
             ]
           }

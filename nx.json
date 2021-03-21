@@ -72,6 +72,9 @@
       "implicitDependencies": ["client-diagnostics"],
       "tags": ["scope:client-diagnostics-e2e", "type:e2e"]
     },
+    "client-directives": {
+      "tags": ["scope:client-directives", "type:ui"]
+    },
     "client-e2e": {
       "implicitDependencies": ["client"],
       "tags": ["scope:client-e2e", "type:e2e"]

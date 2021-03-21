@@ -89,6 +89,7 @@
     "nx:format:write": "nx format:write",
     "nx:help": "nx help",
     "server:production": "node server.prod.js",
+    "prestart": "ng run tools:set-client-env",
     "start": "yarn start:api & yarn start:client",
     "start:api": "ng serve api",
     "start:client": "ng serve client",
