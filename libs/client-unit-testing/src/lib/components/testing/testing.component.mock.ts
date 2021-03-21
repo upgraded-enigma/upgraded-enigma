@@ -5,6 +5,6 @@ import { Component } from '@angular/core';
  */
 @Component({
   selector: 'app-testing-component',
-  template: '<span>testing component</span>',
+  template: '<div appAutoscroll class="scrollable"></div>',
 })
 export class AppTestingComponent {}
