@@ -25,7 +25,7 @@ export class BackendDiagnosticsService {
 
   public ping(): Message {
     return new Message({
-      message: 'Diagnostics service is online. REST routes: static. Websocket routes: dynamic.',
+      message: 'Diagnostics service is online. Routes: diagnostics, diagnostics/static.',
     });
   }
 

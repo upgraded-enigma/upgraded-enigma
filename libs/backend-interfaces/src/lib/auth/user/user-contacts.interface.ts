@@ -1,12 +1,12 @@
 /**
  * User contacts interface with initialization.
  */
-export class UserContacts {
+export class UserContact {
   public email = '';
 
   public phone = '';
 
-  constructor(input?: UserContacts) {
+  constructor(input?: UserContact) {
     if (typeof input !== 'undefined') {
       const keys = Object.keys(input);
       for (const key of keys) {

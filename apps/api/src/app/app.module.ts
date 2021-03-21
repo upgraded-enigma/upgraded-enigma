@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { BackendAuthModule } from '@upgraded-enigma/backend-auth';
 import { BackendDiagnosticsModule } from '@upgraded-enigma/backend-diagnostics';
 import { BackendGqlModule } from '@upgraded-enigma/backend-gql';
 import { BackendGrpcModule } from '@upgraded-enigma/backend-grpc';
@@ -14,7 +13,6 @@ import { environment } from '../environments/environment';
  */
 @Module({
   imports: [
-    BackendAuthModule,
     BackendDiagnosticsModule.forRoot(),
     BackendWebsocketModule.forRoot(),
     BackendGqlModule.forRoot(environment),

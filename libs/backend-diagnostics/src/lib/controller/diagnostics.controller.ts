@@ -3,16 +3,16 @@ import { Message } from '@upgraded-enigma/backend-interfaces';
 
 import { BackendDiagnosticsService } from '../service/diagnostics.service';
 
-@Controller('app-diag')
+@Controller()
 export class BackendDiagnosticsController {
   constructor(private readonly diagnosticsService: BackendDiagnosticsService) {}
 
-  @Get('ping')
+  @Get('diagnostics')
   public ping(): Message {
     return this.diagnosticsService.ping();
   }
 
-  @Get('static')
+  @Get('diagnostics/static')
   public static() {
     return this.diagnosticsService.static();
   }

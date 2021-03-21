@@ -1,14 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import {
+  IUser,
   Message,
-  UserContacts,
   UserLoginCredentials,
   UserLogoutCredentials,
   UserName,
-  UserProfile,
 } from '@upgraded-enigma/backend-interfaces';
 import * as crypto from 'crypto';
+import { map } from 'rxjs/operators';
+
+import { BackendUserService } from './user.service';
 
 export interface IAuthPayload {
   email: string;
@@ -18,7 +20,7 @@ export interface IAuthPayload {
 
 @Injectable()
 export class BackendAuthService {
-  constructor(private readonly jwt: JwtService) {}
+  constructor(private readonly jwt: JwtService, private readonly userService: BackendUserService) {}
 
   public encryptStringWithRsaPublicKey(input: string, publicKey: crypto.RsaPublicKey) {
     const buffer = Buffer.from(input);
@@ -32,10 +34,7 @@ export class BackendAuthService {
     return decrypted.toString('utf8');
   }
 
-  /**
-   * Generates JWT token
-   */
-  public generateJWToken(payload: Omit<IAuthPayload, 'expires'>) {
+  public generateJwtToken(payload: Omit<IAuthPayload, 'expires'>) {
     const expires = new Date();
     const daysInWeek = 7;
     expires.setDate(expires.getDate() + daysInWeek);
@@ -43,10 +42,6 @@ export class BackendAuthService {
     return token;
   }
 
-  /**
-   * Decrypts JWT token.
-   * @param token user token
-   */
   public decryptJWToken(token: string) {
     const result = this.jwt.decode(token) as IAuthPayload;
     return result;
@@ -58,7 +53,7 @@ export class BackendAuthService {
     });
   }
 
-  public login(credentials: UserLoginCredentials): UserProfile {
+  public login(credentials: UserLoginCredentials) {
     return this.authenticateAndReturnProfile(credentials);
   }
 
@@ -66,25 +61,25 @@ export class BackendAuthService {
     return new Message({ message: `success for token ${credentials.token}` });
   }
 
-  public signup(credentials: UserLoginCredentials): UserProfile {
-    return this.authenticateAndReturnProfile(credentials);
-  }
-
-  private authenticateAndReturnProfile(credentials: UserLoginCredentials): UserProfile {
-    const id = '0';
+  private authenticateAndReturnProfile(credentials: UserLoginCredentials) {
     const name: UserName = {
       first: '',
       last: '',
     };
-    const contacts: UserContacts = {
+    const defaultProfile: IUser = {
       email: credentials.email,
-      phone: '',
+      token: this.generateJwtToken({
+        email: credentials.email,
+        name: `${name.first} ${name.last}`,
+      }),
+      keys: {
+        public: '',
+        private: '',
+      },
+      encrypted: false,
+      password: credentials.password,
+      passwords: [],
     };
-    const token = this.generateJWToken({
-      email: contacts.email,
-      name: `${name.first} ${name.last}`,
-    });
-    const profile: UserProfile = new UserProfile({ id, name, contacts, token });
-    return profile;
+    return this.userService.user().pipe(map(user => (user !== null ? user : defaultProfile)));
   }
 }

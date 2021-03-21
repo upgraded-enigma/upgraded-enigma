@@ -10,4 +10,5 @@ export const environment: ApiEnvironment = {
   production: false,
   appName: 'Upgraded Enigma API',
   wsPort: defaultWsPort,
+  jwtSecret: 'jwtsecret', // TODO: should be set from .env
 };

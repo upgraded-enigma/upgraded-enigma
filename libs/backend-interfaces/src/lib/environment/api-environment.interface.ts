@@ -33,6 +33,8 @@ export class ApiEnvironment {
 
   public wsPort = defaultWsPort;
 
+  public jwtSecret = '';
+
   /**
    * Constructor.
    * By default generates dev environment.

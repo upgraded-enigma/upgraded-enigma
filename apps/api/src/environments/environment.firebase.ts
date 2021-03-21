@@ -8,4 +8,5 @@ export const environment: ApiEnvironment = {
   firebase: true,
   appName: 'Upgraded Enigma API',
   wsPort: defaultWsPort,
+  jwtSecret: 'jwtsecret', // TODO: should be set from .env
 };

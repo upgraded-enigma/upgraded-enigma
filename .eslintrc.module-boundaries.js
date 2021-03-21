@@ -52,7 +52,6 @@ const backendConstraints = [
     sourceTag: 'scope:api',
     onlyDependOnLibsWithTags: [
       'scope:proto',
-      'scope:backend-auth',
       'scope:backend-grpc',
       'scope:backend-gql',
       'scope:backend-interfaces',

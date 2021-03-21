@@ -38,10 +38,9 @@ async function bootstrap(expressInstance: e.Express): Promise<unknown> {
   const port = typeof process.env.port !== 'undefined' ? process.env.port : defaultPort;
   await app.listen(port, () => {
     console.warn(`Listening at:
-    - http://localhost:${port}/${globalPrefix}/ping
-    - http://localhost:${port}/${globalPrefix}/signup
-    - http://localhost:${port}/${globalPrefix}/login
-    - http://localhost:${port}/${globalPrefix}/logout
+    - http://localhost:${port}/${globalPrefix}/diagnostics
+    - http://localhost:${port}/${globalPrefix}/auth
+    - http://localhost:${port}/${globalPrefix}/user
     - ws://localhost:${environment.wsPort}/api/events`);
   });
 
