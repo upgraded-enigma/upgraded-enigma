@@ -77,8 +77,8 @@ export class BackendUserService {
         } else {
           const user: IUser = JSON.parse(data.toString());
           const userStatus = userStatusObject({
-            initialized: Boolean(user.email && user.password),
-            encryption: Boolean(user.keys.public && user.keys.private),
+            initialized: Boolean(user.email) && Boolean(user.password),
+            encryption: Boolean(user.keys.public) && Boolean(user.keys.private),
             passwords: user.passwords.length > 0,
             encrypted: user.encrypted,
           });
