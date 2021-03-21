@@ -8,6 +8,7 @@ import {
   UserName,
   UserProfile,
 } from '@upgraded-enigma/backend-interfaces';
+import * as crypto from 'crypto';
 
 export interface IAuthPayload {
   email: string;
@@ -18,6 +19,18 @@ export interface IAuthPayload {
 @Injectable()
 export class BackendAuthService {
   constructor(private readonly jwt: JwtService) {}
+
+  public encryptStringWithRsaPublicKey(input: string, publicKey: crypto.RsaPublicKey) {
+    const buffer = Buffer.from(input);
+    const encrypted = crypto.publicEncrypt(publicKey, buffer);
+    return encrypted.toString('base64');
+  }
+
+  public decryptStringWithRsaPrivateKey(input: string, privateKey: crypto.RsaPrivateKey) {
+    const buffer = Buffer.from(input, 'base64');
+    const decrypted = crypto.privateDecrypt(privateKey, buffer);
+    return decrypted.toString('utf8');
+  }
 
   /**
    * Generates JWT token

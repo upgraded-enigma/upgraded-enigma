@@ -26,7 +26,7 @@
       "tags": ["scope:backend-auth", "type:feature"]
     },
     "backend-diagnostics": {
-      "tags": ["scope:backend-diagnostics", "type:feature"]
+      "tags": ["scope:backend-diagnostics", "type:data-access"]
     },
     "backend-gql": {
       "tags": ["scope:backend-gql", "type:feature"]

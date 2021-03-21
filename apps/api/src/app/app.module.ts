@@ -15,8 +15,8 @@ import { environment } from '../environments/environment';
 @Module({
   imports: [
     BackendAuthModule,
-    BackendWebsocketModule,
-    BackendDiagnosticsModule,
+    BackendDiagnosticsModule.forRoot(),
+    BackendWebsocketModule.forRoot(),
     BackendGqlModule.forRoot(environment),
     BackendGrpcModule.forRoot(environment),
   ],

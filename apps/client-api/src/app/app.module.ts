@@ -14,7 +14,11 @@ import { environment } from '../environments/environment';
  * It should not contain any system level security keys.
  */
 @Module({
-  imports: [BackendAuthModule, BackendWebsocketModule, BackendDiagnosticsModule],
+  imports: [
+    BackendAuthModule,
+    BackendDiagnosticsModule.forRoot(),
+    BackendWebsocketModule.forRoot(),
+  ],
   providers: [
     {
       provide: API_ENV,

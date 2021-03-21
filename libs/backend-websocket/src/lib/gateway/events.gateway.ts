@@ -6,8 +6,9 @@ import {
   WebSocketServer,
   WsResponse,
 } from '@nestjs/websockets';
+import { BackendDiagnosticsService } from '@upgraded-enigma/backend-diagnostics';
 import { defaultWsPort } from '@upgraded-enigma/backend-interfaces';
-import { BehaviorSubject, Observable, timer } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { map, takeWhile } from 'rxjs/operators';
 import { Server } from 'ws';
 
@@ -22,42 +23,25 @@ export class BackendEventsGateway implements OnGatewayConnection, OnGatewayDisco
   @WebSocketServer()
   protected server?: Server;
 
-  /**
-   * Currently coonected users count.
-   */
-  private readonly users$ = new BehaviorSubject<number>(0);
+  constructor(private readonly diagnosticsService: BackendDiagnosticsService) {}
 
-  private sendClientChangeEvent(data: number): void {
+  private sendClientChangeEvent(): void {
     if (typeof this.server !== 'undefined') {
       const clients = this.server.clients.values();
       for (const client of clients) {
-        client.send(JSON.stringify({ event: 'users', data }));
+        client.send(JSON.stringify({ event: 'users', data: this.server.clients.size }));
       }
     }
   }
 
   public async handleConnection() {
-    // client disconnected
-    const usersCount = this.users$.value + 1;
-    this.users$.next(usersCount);
-
-    // Notify connected clients of current users
-    this.sendClientChangeEvent(usersCount);
+    this.sendClientChangeEvent();
   }
 
   public async handleDisconnect() {
-    // client disconnected
-    const usersCount = this.users$.value - 1;
-    this.users$.next(usersCount);
-
-    // Notify connected clients of current users
-    this.sendClientChangeEvent(usersCount);
+    this.sendClientChangeEvent();
   }
 
-  /**
-   * Events subscription.
-   * @param data
-   */
   @SubscribeMessage('events')
   public handleEvents(): Observable<WsResponse<number>> {
     const timeout = 1000;
@@ -69,5 +53,33 @@ export class BackendEventsGateway implements OnGatewayConnection, OnGatewayDisco
         return wsResponse;
       }),
     );
+  }
+
+  @SubscribeMessage('diag-dynamic')
+  public handleDynamicDiagnosticEvents() {
+    if (typeof this.server !== 'undefined') {
+      const clients = this.server.clients.values();
+      for (const client of clients) {
+        const event: WsResponse<{ name: string; value: string }[]> = {
+          event: 'dynamic',
+          data: this.diagnosticsService.dynamic(),
+        };
+        client.send(JSON.stringify(event));
+      }
+    }
+  }
+
+  @SubscribeMessage('message')
+  public handleMessageEvents(data: { sender: string; text: string }) {
+    if (typeof this.server !== 'undefined') {
+      const clients = this.server.clients.values();
+      for (const client of clients) {
+        const event: WsResponse<{ sender: string; text: string }> = {
+          event: 'message',
+          data,
+        };
+        client.send(JSON.stringify(event));
+      }
+    }
   }
 }
