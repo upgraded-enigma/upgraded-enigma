@@ -1,8 +1,6 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { BackendAuthModule } from '@upgraded-enigma/backend-auth';
 import { BackendDiagnosticsModule } from '@upgraded-enigma/backend-diagnostics';
-import { BackendGqlModule } from '@upgraded-enigma/backend-gql';
-import { BackendGrpcModule } from '@upgraded-enigma/backend-grpc';
 import { API_ENV } from '@upgraded-enigma/backend-interfaces';
 import { BackendLoggerMiddleware } from '@upgraded-enigma/backend-logger';
 import { BackendWebsocketModule } from '@upgraded-enigma/backend-websocket';
@@ -10,16 +8,13 @@ import { BackendWebsocketModule } from '@upgraded-enigma/backend-websocket';
 import { environment } from '../environments/environment';
 
 /**
- * Root API application module.
+ * Client API application module.
+ * This api is shipped as part of the Electron app.
+ * This api is not deployed to firebase, it integrates with firebase deployed api over http.
+ * It should not contain any system level security keys.
  */
 @Module({
-  imports: [
-    BackendAuthModule,
-    BackendWebsocketModule,
-    BackendDiagnosticsModule,
-    BackendGqlModule.forRoot(environment),
-    BackendGrpcModule.forRoot(environment),
-  ],
+  imports: [BackendAuthModule, BackendWebsocketModule, BackendDiagnosticsModule],
   providers: [
     {
       provide: API_ENV,
@@ -27,7 +22,7 @@ import { environment } from '../environments/environment';
     },
   ],
 })
-export class ApiAppModule implements NestModule {
+export class ClientApiAppModule implements NestModule {
   public configure(consumer: MiddlewareConsumer) {
     consumer.apply(BackendLoggerMiddleware).forRoutes('*');
   }

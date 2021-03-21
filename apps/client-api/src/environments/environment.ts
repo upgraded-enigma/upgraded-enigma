@@ -8,6 +8,6 @@ import { ApiEnvironment, defaultWsPort } from '@upgraded-enigma/backend-interfac
  */
 export const environment: ApiEnvironment = {
   production: false,
-  appName: 'Upgraded Enigma API',
+  appName: 'Upgraded Enigma Client API',
   wsPort: defaultWsPort,
 };

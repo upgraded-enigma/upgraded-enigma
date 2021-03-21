@@ -19,8 +19,8 @@ describe('BackendAuthService', () => {
     service = app.get<BackendAuthService>(BackendAuthService);
   });
 
-  describe('getData', () => {
-    it('should return "Welcome to api!"', () => {
+  describe('ping', () => {
+    it('should return "Auth service is online. Public methods: login, logout, signup."', () => {
       expect(service.ping()).toEqual({
         message: 'Auth service is online. Public methods: login, logout, signup.',
       });

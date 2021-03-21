@@ -25,6 +25,9 @@
     "backend-auth": {
       "tags": ["scope:backend-auth", "type:feature"]
     },
+    "backend-diagnostics": {
+      "tags": ["scope:backend-diagnostics", "type:feature"]
+    },
     "backend-gql": {
       "tags": ["scope:backend-gql", "type:feature"]
     },
@@ -42,6 +45,9 @@
     },
     "client": {
       "tags": ["scope:client", "type:application"]
+    },
+    "client-api": {
+      "tags": ["scope:client-api", "type:application"]
     },
     "client-chatbot": {
       "tags": ["scope:client-chatbot", "type:feature"]

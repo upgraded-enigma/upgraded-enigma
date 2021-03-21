@@ -28,6 +28,7 @@
     "noUnusedLocals": true,
     "paths": {
       "@upgraded-enigma/backend-auth": ["libs/backend-auth/src/index.ts"],
+      "@upgraded-enigma/backend-diagnostics": ["libs/backend-diagnostics/src/index.ts"],
       "@upgraded-enigma/backend-gql": ["libs/backend-gql/src/index.ts"],
       "@upgraded-enigma/backend-grpc": ["libs/backend-grpc/src/index.ts"],
       "@upgraded-enigma/backend-interfaces": ["libs/backend-interfaces/src/index.ts"],

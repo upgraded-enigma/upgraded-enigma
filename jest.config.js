@@ -25,5 +25,7 @@ module.exports = {
     '<rootDir>/libs/client-util',
     '<rootDir>/libs/client-unit-testing',
     '<rootDir>/libs/proto',
+    '<rootDir>/apps/client-api',
+    '<rootDir>/libs/backend-diagnostics',
   ],
 };

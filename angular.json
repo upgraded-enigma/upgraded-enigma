@@ -111,6 +111,28 @@
       "root": "libs/backend-auth",
       "sourceRoot": "libs/backend-auth/src"
     },
+    "backend-diagnostics": {
+      "architect": {
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "eslintConfig": "libs/backend-diagnostics/.eslintrc.json",
+            "lintFilePatterns": ["libs/proto/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/backend-diagnostics/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/libs/backend-diagnostics"]
+        }
+      },
+      "projectType": "library",
+      "root": "libs/backend-diagnostics",
+      "sourceRoot": "libs/backend-diagnostics/src"
+    },
     "backend-gql": {
       "architect": {
         "lint": {
@@ -382,6 +404,58 @@
         }
       },
       "sourceRoot": "apps/client/src"
+    },
+    "client-api": {
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "configurations": {
+            "production": {
+              "extractLicenses": true,
+              "fileReplacements": [
+                {
+                  "replace": "apps/client-api/src/environments/environment.ts",
+                  "with": "apps/client-api/src/environments/environment.prod.ts"
+                }
+              ],
+              "inspect": false,
+              "optimization": true
+            }
+          },
+          "options": {
+            "assets": ["apps/client-api/src/assets"],
+            "main": "apps/client-api/src/main.ts",
+            "outputPath": "dist/apps/client-api",
+            "tsConfig": "apps/client-api/tsconfig.app.json"
+          },
+          "outputs": ["{options.outputPath}"]
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "eslintConfig": "apps/client-api/.eslintrc.json",
+            "lintFilePatterns": ["apps/client-api/**/*.ts"]
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "client-api:build"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/client-api/jest.config.js",
+            "passWithNoTests": true
+          },
+          "outputs": ["coverage/apps/client-api"]
+        }
+      },
+      "prefix": "client-api",
+      "projectType": "application",
+      "root": "apps/client-api",
+      "sourceRoot": "apps/client-api/src"
     },
     "client-chatbot": {
       "architect": {

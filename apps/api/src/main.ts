@@ -5,7 +5,6 @@ import { MicroserviceOptions } from '@nestjs/microservices';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { WsAdapter } from '@nestjs/platform-ws';
 import { backendGrpcClientOptions } from '@upgraded-enigma/backend-grpc';
-import { defaultWsPort } from '@upgraded-enigma/backend-interfaces';
 import e from 'express';
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
@@ -57,7 +56,7 @@ async function bootstrap(expressInstance: e.Express): Promise<unknown> {
     - http://localhost:${port}/${globalPrefix}/graphql
     - http://localhost:${port}/${globalPrefix}/grpc
     - http://localhost:${port}/${globalPrefix}/grpc/:id
-    - ws://localhost:${defaultWsPort}/api/events`);
+    - ws://localhost:${environment.wsPort}/api/events`);
   });
 
   return app.init();
