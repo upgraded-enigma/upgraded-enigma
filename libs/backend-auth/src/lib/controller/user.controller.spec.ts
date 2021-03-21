@@ -19,12 +19,10 @@ describe('BackendUserController', () => {
     }).compile();
   });
 
-  describe('ping', () => {
-    it('should return "User service is online. Public methods: login, logout."', () => {
-      const appController = app.get<BackendUserController>(BackendUserController);
-      expect(appController.ping()).toEqual({
-        message: 'User service is online. Public methods: login, logout, signup.',
-      });
-    });
+  it('TODO', () => {
+    const appController = app.get<BackendUserController>(BackendUserController);
+    expect(appController).toBeDefined();
   });
+
+  test.todo('BackendUserController');
 });

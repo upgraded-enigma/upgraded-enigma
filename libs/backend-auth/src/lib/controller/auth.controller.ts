@@ -17,12 +17,12 @@ export class BackendAuthController {
   }
 
   @Post('auth/login')
-  public login(@Body() credentials: UserLoginCredentials) {
-    return this.authService.login(credentials);
+  public login(@Body() payload: UserLoginCredentials) {
+    return this.authService.login(payload);
   }
 
   @Post('auth/logout')
-  public logout(@Body() credentials: UserLogoutCredentials): Message {
-    return this.authService.logout(credentials);
+  public logout(@Body() payload: UserLogoutCredentials): Message {
+    return this.authService.logout(payload);
   }
 }

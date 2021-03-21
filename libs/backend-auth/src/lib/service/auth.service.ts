@@ -5,7 +5,6 @@ import {
   Message,
   UserLoginCredentials,
   UserLogoutCredentials,
-  UserName,
 } from '@upgraded-enigma/backend-interfaces';
 import * as crypto from 'crypto';
 import { map } from 'rxjs/operators';
@@ -22,13 +21,19 @@ export interface IAuthPayload {
 export class BackendAuthService {
   constructor(private readonly jwt: JwtService, private readonly userService: BackendUserService) {}
 
-  public encryptStringWithRsaPublicKey(input: string, publicKey: crypto.RsaPublicKey) {
+  public encryptStringWithRsaPublicKey(
+    input: string,
+    publicKey: crypto.RsaPublicKey | crypto.KeyLike,
+  ) {
     const buffer = Buffer.from(input);
     const encrypted = crypto.publicEncrypt(publicKey, buffer);
     return encrypted.toString('base64');
   }
 
-  public decryptStringWithRsaPrivateKey(input: string, privateKey: crypto.RsaPrivateKey) {
+  public decryptStringWithRsaPrivateKey(
+    input: string,
+    privateKey: crypto.RsaPrivateKey | crypto.KeyLike,
+  ) {
     const buffer = Buffer.from(input, 'base64');
     const decrypted = crypto.privateDecrypt(privateKey, buffer);
     return decrypted.toString('utf8');
@@ -62,7 +67,7 @@ export class BackendAuthService {
   }
 
   private authenticateAndReturnProfile(credentials: UserLoginCredentials) {
-    const name: UserName = {
+    const name = {
       first: '',
       last: '',
     };

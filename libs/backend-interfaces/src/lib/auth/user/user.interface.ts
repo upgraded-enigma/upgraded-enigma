@@ -1,3 +1,5 @@
+import { KeyLike, RsaPrivateKey, RsaPublicKey } from 'node:crypto';
+
 export interface IUserPassword {
   name: string;
   password: string;
@@ -5,8 +7,8 @@ export interface IUserPassword {
 }
 
 export interface IUserKeys {
-  public: string;
-  private: string;
+  public?: RsaPublicKey | KeyLike;
+  private?: RsaPrivateKey | KeyLike;
 }
 
 export interface IUser {
@@ -18,14 +20,28 @@ export interface IUser {
   encrypted: boolean;
 }
 
-export const defaultUserObject: IUser = {
-  email: '',
-  password: '',
-  token: '',
+export const userObject = (values: Partial<IUser>): IUser => ({
+  email: values.email ?? '',
+  password: values.password ?? '',
+  token: values.token ?? '',
   keys: {
-    public: '',
-    private: '',
+    public: values.keys?.public ?? void 0,
+    private: values.keys?.private ?? void 0,
   },
-  passwords: [],
-  encrypted: false,
-};
+  passwords: values.passwords ?? [],
+  encrypted: values.encrypted ?? false,
+});
+
+export interface IUserStatus {
+  initialized: boolean;
+  encryption: boolean;
+  passwords: boolean;
+  encrypted: boolean;
+}
+
+export const userStatusObject = (values: Partial<IUserStatus>): IUserStatus => ({
+  initialized: values.initialized ?? false,
+  encryption: values.encryption ?? false,
+  encrypted: values.encrypted ?? false,
+  passwords: values.passwords ?? false,
+});

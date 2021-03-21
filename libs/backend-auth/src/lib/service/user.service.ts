@@ -1,5 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { defaultUserObject, IUser, IUserPassword } from '@upgraded-enigma/backend-interfaces';
+import {
+  IUser,
+  IUserPassword,
+  IUserStatus,
+  userObject,
+  userStatusObject,
+} from '@upgraded-enigma/backend-interfaces';
 import * as fs from 'fs';
 import { Glob } from 'glob';
 import { Observable } from 'rxjs';
@@ -18,17 +24,17 @@ export class BackendUserService {
   /**
    * Checks if user rsa key (either private or public) exists.
    */
-  public userKeyExists(privateKey: boolean) {
-    return new Observable<IUser | null>(observer => {
-      const keyPath = privateKey ? this.rsaPrivateKeyPath : this.rsaPublicKeyPath;
+  public userKeyExists(privateKey?: boolean) {
+    return new Observable<boolean>(observer => {
+      const keyPath = Boolean(privateKey) ? this.rsaPrivateKeyPath : this.rsaPublicKeyPath;
       fs.readFile(keyPath, (error, data) => {
         if (error !== null) {
-          observer.next(null);
+          observer.error(error);
+          observer.complete();
         } else {
-          const user: IUser = JSON.parse(data.toString());
-          observer.next(user);
+          observer.next(true);
+          observer.complete();
         }
-        observer.complete();
       });
     });
   }
@@ -41,18 +47,42 @@ export class BackendUserService {
     return new Observable<IUser>(observer => {
       fs.readFile(this.userConfigPath, (readError, data) => {
         if (readError !== null) {
-          fs.writeFile(this.userConfigPath, JSON.stringify(defaultUserObject), writeError => {
+          fs.writeFile(this.userConfigPath, JSON.stringify(userObject({})), writeError => {
             if (writeError !== null) {
               observer.error(writeError);
               observer.complete();
             } else {
-              observer.next(defaultUserObject);
+              observer.next(userObject({}));
               observer.complete();
             }
           });
         } else {
           const user: IUser = JSON.parse(data.toString());
           observer.next(user);
+          observer.complete();
+        }
+      });
+    });
+  }
+
+  /**
+   * Returns user status object based on user configuration.
+   */
+  public userStatus() {
+    return new Observable<IUserStatus>(observer => {
+      fs.readFile(this.userConfigPath, (readError, data) => {
+        if (readError !== null) {
+          observer.error(readError);
+          observer.complete();
+        } else {
+          const user: IUser = JSON.parse(data.toString());
+          const userStatus = userStatusObject({
+            initialized: Boolean(user.email && user.password),
+            encryption: Boolean(user.keys.public && user.keys.private),
+            passwords: user.passwords.length > 0,
+            encrypted: user.encrypted,
+          });
+          observer.next(userStatus);
           observer.complete();
         }
       });
@@ -183,9 +213,9 @@ export class BackendUserService {
   /**
    * Exports passwords.
    */
-  public exportPasswords(passwords: string[]) {
+  public exportPasswords(passwords: IUserPassword[]) {
     const exportPath = this.userPasswordsExportPath();
-    return new Observable<{ path: string; passwords: string[] }>(observer => {
+    return new Observable<{ path: string; passwords: IUserPassword[] }>(observer => {
       const data = JSON.stringify(passwords);
       fs.writeFile(exportPath, data, writeError => {
         if (writeError !== null) {
