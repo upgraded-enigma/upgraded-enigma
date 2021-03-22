@@ -79,7 +79,6 @@ export class BackendUserService {
           const userStatus = userStatusObject({
             initialized: Boolean(user.email) && Boolean(user.password),
             encryption: Boolean(user.keys.public) && Boolean(user.keys.private),
-            passwords: user.passwords.length > 0,
             encrypted: user.encrypted,
           });
           observer.next(userStatus);

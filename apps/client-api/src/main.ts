@@ -3,6 +3,7 @@ import { CorsOptions } from '@nestjs/common/interfaces/external/cors-options.int
 import { NestFactory } from '@nestjs/core';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import { WsAdapter } from '@nestjs/platform-ws';
+import { spawn } from 'child_process';
 import e from 'express';
 
 import { ClientApiAppModule } from './app/app.module';
@@ -48,3 +49,57 @@ async function bootstrap(expressInstance: e.Express): Promise<unknown> {
 }
 
 void bootstrap(server);
+
+/**
+ * Terminator function.
+ * Runs when application is terminated.
+ */
+function terminator(sig?: string) {
+  if (typeof sig === 'string') {
+    console.log(`\n${new Date(Date.now())}: Received signal ${sig} - terminating app...\n`);
+    /**
+     * Reset client env variables if dev argument is passed.
+     */
+    if (sig === 'exit' && !Boolean(process.env.FIREBASE_CONFIG)) {
+      /**
+       * Resets client environment variables configuration to default values.
+       */
+      const envResetter = spawn('ng', ['run', 'tools:reset-client-env'], {
+        stdio: 'inherit',
+        detached: true,
+      });
+      envResetter.on('close', code => {
+        process.exit(code ?? 0);
+      });
+    } else {
+      process.exit(0);
+    }
+  }
+}
+
+/**
+ * Termination handlers.
+ */
+(() => {
+  process.on('exit', () => {
+    terminator('exit');
+  });
+  [
+    'SIGHUP',
+    'SIGINT',
+    'SIGQUIT',
+    'SIGILL',
+    'SIGTRAP',
+    'SIGABRT',
+    'SIGBUS',
+    'SIGFPE',
+    'SIGUSR1',
+    'SIGSEGV',
+    'SIGUSR2',
+    'SIGTERM',
+  ].forEach(element => {
+    process.on(element, () => {
+      terminator(element);
+    });
+  });
+})();

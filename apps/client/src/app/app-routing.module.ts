@@ -8,6 +8,10 @@ export const APP_ROUTES: Route[] = [
       import('@upgraded-enigma/client-diagnostics').then(mod => mod.AppClientDiagnosticsModule),
   },
   {
+    path: 'user',
+    loadChildren: () => import('@upgraded-enigma/client-user').then(mod => mod.AppClientUserModule),
+  },
+  {
     path: 'chatbot',
     loadChildren: () =>
       import('@upgraded-enigma/client-chatbot').then(mod => mod.AppClientChatbotModule),

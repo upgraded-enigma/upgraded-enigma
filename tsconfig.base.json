@@ -47,7 +47,8 @@
       "@upgraded-enigma/client-unit-testing": ["libs/client-unit-testing/src/index.ts"],
       "@upgraded-enigma/client-util": ["libs/client-util/src/index.ts"],
       "@upgraded-enigma/proto": ["libs/proto/src/index.ts"],
-      "@upgraded-enigma/client-directives": ["libs/client-directives/src/index.ts"]
+      "@upgraded-enigma/client-directives": ["libs/client-directives/src/index.ts"],
+      "@upgraded-enigma/client-user": ["libs/client-user/src/index.ts"]
     },
     "rootDir": ".",
     "skipDefaultLibCheck": true,

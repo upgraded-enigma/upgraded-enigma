@@ -35,7 +35,6 @@ export const userObject = (values: Partial<IUser>): IUser => ({
 export interface IUserStatus {
   initialized: boolean;
   encryption: boolean;
-  passwords: boolean;
   encrypted: boolean;
 }
 
@@ -43,5 +42,4 @@ export const userStatusObject = (values: Partial<IUserStatus>): IUserStatus => (
   initialized: values.initialized ?? false,
   encryption: values.encryption ?? false,
   encrypted: values.encrypted ?? false,
-  passwords: values.passwords ?? false,
 });
