@@ -50,7 +50,7 @@ export class AppHttpHandlersService {
     @Inject(WEB_CLIENT_APP_ENV) public readonly env: IWebClientAppEnvironment,
   ) {}
 
-  private getUserToken() {
+  public getUserToken() {
     const token: string = (JSON.parse(localStorage.getItem('userService') ?? '{token: ""}') as {
       token: string;
     }).token;
