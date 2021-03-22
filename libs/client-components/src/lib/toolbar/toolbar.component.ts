@@ -28,6 +28,16 @@ export class AppToolbarComponent {
       title: 'Login',
     },
     {
+      routerLink: ['user'],
+      icon: 'verified_user',
+      title: 'User profile',
+    },
+    {
+      routerLink: ['user/data'],
+      icon: 'dashboard',
+      title: 'User data',
+    },
+    {
       routerLink: ['workspaces'],
       icon: 'view_comfy',
       title: 'Workspaces',

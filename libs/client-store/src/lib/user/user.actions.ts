@@ -37,3 +37,5 @@ export const encryptPasswords = createAction('encrypt passwords');
 export const decryptPasswords = createAction('decrypt passwords');
 
 export const exportPasswords = createAction('export passwords');
+
+export const generateKeypair = createAction('generate keypair');

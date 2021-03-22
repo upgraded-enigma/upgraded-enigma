@@ -8,6 +8,7 @@ import { AppClientTranslateModule } from '@upgraded-enigma/client-translate';
 import { AppClientUserRoutingModule } from './client-user-routing.module';
 import { AppUserAuthComponent } from './components/auth/auth.component';
 import { AppUserDataComponent } from './components/data/data.component';
+import { AppUserProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { AppUserDataComponent } from './components/data/data.component';
     AppClientTranslateModule.forRoot(),
     AppClientUserRoutingModule,
   ],
-  declarations: [AppUserAuthComponent, AppUserDataComponent],
+  declarations: [AppUserAuthComponent, AppUserDataComponent, AppUserProfileComponent],
 })
 export class AppClientUserModule {}

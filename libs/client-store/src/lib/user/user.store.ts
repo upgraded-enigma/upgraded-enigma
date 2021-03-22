@@ -10,6 +10,7 @@ import {
   deletePassword,
   encryptPasswords,
   exportPasswords,
+  generateKeypair,
   getUser,
   listExportedPasswordFiles,
   logIn,
@@ -38,6 +39,7 @@ export const userActions = {
   encryptPasswords,
   decryptPasswords,
   exportPasswords,
+  generateKeypair,
 };
 
 @State<IUserState>({
@@ -209,5 +211,10 @@ export class AppUserState {
   @Action(exportPasswords)
   public exportPasswords(ctx: StateContext<IUserState>) {
     return this.api.exportPasswords();
+  }
+
+  @Action(generateKeypair)
+  public generateKeypair(ctx: StateContext<IUserState>) {
+    return this.api.generateKeypair();
   }
 }

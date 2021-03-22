@@ -17,7 +17,7 @@ export class AppAnonimousGuard implements CanActivate {
       first(),
       map(user => {
         if (user.token) {
-          return this.router.createUrlTree(['summary']);
+          return this.router.createUrlTree(['/user']);
         }
 
         return !Boolean(user.token) ? true : false;
