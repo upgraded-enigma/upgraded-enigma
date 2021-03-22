@@ -8,8 +8,8 @@ import {
 } from '@nestjs/websockets';
 import { BackendDiagnosticsService } from '@upgraded-enigma/backend-diagnostics';
 import { defaultWsPort } from '@upgraded-enigma/backend-interfaces';
-import { Observable, timer } from 'rxjs';
-import { map, takeWhile } from 'rxjs/operators';
+import { Subscription, timer } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { Server } from 'ws';
 
 @WebSocketGateway(defaultWsPort, {
@@ -22,6 +22,8 @@ export class BackendEventsGateway implements OnGatewayConnection, OnGatewayDisco
    */
   @WebSocketServer()
   protected server?: Server;
+
+  private dynamicDataSub?: Subscription;
 
   constructor(private readonly diagnosticsService: BackendDiagnosticsService) {}
 
@@ -42,30 +44,33 @@ export class BackendEventsGateway implements OnGatewayConnection, OnGatewayDisco
     this.sendClientChangeEvent();
   }
 
-  @SubscribeMessage('events')
-  public handleEvents(): Observable<WsResponse<number>> {
-    const timeout = 1000;
-    const eventsCount = 4;
-    return timer(0, timeout).pipe(
-      takeWhile(item => item < eventsCount),
-      map(item => {
-        const wsResponse: WsResponse<number> = { event: 'timer', data: item };
-        return wsResponse;
-      }),
-    );
+  @SubscribeMessage('get-diag-dynamic')
+  public getDynamicDiagnosticEvents() {
+    if (typeof this.dynamicDataSub === 'undefined') {
+      const timeout = 5000;
+      this.dynamicDataSub = timer(0, timeout)
+        .pipe(
+          tap(() => {
+            if (typeof this.server !== 'undefined') {
+              const clients = this.server.clients.values();
+              for (const client of clients) {
+                const event: WsResponse<{ name: string; value: string }[]> = {
+                  event: 'dynamic',
+                  data: this.diagnosticsService.dynamic(),
+                };
+                client.send(JSON.stringify(event));
+              }
+            }
+          }),
+        )
+        .subscribe();
+    }
   }
 
-  @SubscribeMessage('diag-dynamic')
-  public handleDynamicDiagnosticEvents() {
-    if (typeof this.server !== 'undefined') {
-      const clients = this.server.clients.values();
-      for (const client of clients) {
-        const event: WsResponse<{ name: string; value: string }[]> = {
-          event: 'dynamic',
-          data: this.diagnosticsService.dynamic(),
-        };
-        client.send(JSON.stringify(event));
-      }
+  @SubscribeMessage('stop-diag-dynamic')
+  public stopDynamicDiagnosticEvents() {
+    if (typeof this.dynamicDataSub !== 'undefined') {
+      this.dynamicDataSub.unsubscribe();
     }
   }
 

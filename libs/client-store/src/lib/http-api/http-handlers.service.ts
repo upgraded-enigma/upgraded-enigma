@@ -51,7 +51,9 @@ export class AppHttpHandlersService {
   ) {}
 
   public getUserToken() {
-    const token: string = (JSON.parse(localStorage.getItem('userService') ?? '{token: ""}') as {
+    const token: string = (JSON.parse(
+      localStorage.getItem('userService') ?? JSON.stringify({ token: '' }),
+    ) as {
       token: string;
     }).token;
     return token;
