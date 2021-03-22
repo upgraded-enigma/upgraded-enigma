@@ -106,6 +106,9 @@
     "client-util": {
       "tags": ["scope:client-util", "type:util"]
     },
+    "client-workspaces": {
+      "tags": ["scope:client-workspaces", "type:feature"]
+    },
     "documentation": {
       "tags": ["scope:documentation", "type:application"]
     },

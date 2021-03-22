@@ -23,6 +23,16 @@ export class AppToolbarComponent {
       title: 'API info',
     },
     {
+      routerLink: ['user/auth'],
+      icon: 'input',
+      title: 'Login',
+    },
+    {
+      routerLink: ['workspaces'],
+      icon: 'view_comfy',
+      title: 'Workspaces',
+    },
+    {
       routerLink: ['chatbot'],
       icon: 'chat',
       title: 'Chat',

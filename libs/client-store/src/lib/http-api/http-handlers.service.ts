@@ -4,6 +4,7 @@ import { ApolloLink, split } from '@apollo/client/core';
 import { ErrorResponse, onError } from '@apollo/client/link/error';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { TranslateService } from '@ngx-translate/core';
+import { Navigate } from '@ngxs/router-plugin';
 import { Store } from '@ngxs/store';
 import {
   HTTP_STATUS,
@@ -245,6 +246,7 @@ export class AppHttpHandlersService {
       ) as IUserState;
       user.token = '';
       localStorage.setItem(USER_SERVICE_LOCAL_STORAGE_KEY, JSON.stringify(user));
+      void this.store.dispatch(new Navigate(['user/auth']));
     }
   }
 

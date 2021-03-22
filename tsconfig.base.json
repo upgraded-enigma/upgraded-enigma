@@ -38,6 +38,7 @@
       "@upgraded-enigma/client-components": ["libs/client-components/src/index.ts"],
       "@upgraded-enigma/client-core": ["libs/client-core/src/index.ts"],
       "@upgraded-enigma/client-diagnostics": ["libs/client-diagnostics/src/index.ts"],
+      "@upgraded-enigma/client-directives": ["libs/client-directives/src/index.ts"],
       "@upgraded-enigma/client-gql": ["libs/client-gql/src/index.ts"],
       "@upgraded-enigma/client-material": ["libs/client-material/src/index.ts"],
       "@upgraded-enigma/client-services": ["libs/client-services/src/index.ts"],
@@ -45,10 +46,10 @@
       "@upgraded-enigma/client-store": ["libs/client-store/src/index.ts"],
       "@upgraded-enigma/client-translate": ["libs/client-translate/src/index.ts"],
       "@upgraded-enigma/client-unit-testing": ["libs/client-unit-testing/src/index.ts"],
+      "@upgraded-enigma/client-user": ["libs/client-user/src/index.ts"],
       "@upgraded-enigma/client-util": ["libs/client-util/src/index.ts"],
-      "@upgraded-enigma/proto": ["libs/proto/src/index.ts"],
-      "@upgraded-enigma/client-directives": ["libs/client-directives/src/index.ts"],
-      "@upgraded-enigma/client-user": ["libs/client-user/src/index.ts"]
+      "@upgraded-enigma/client-workspaces": ["libs/client-workspaces/src/index.ts"],
+      "@upgraded-enigma/proto": ["libs/proto/src/index.ts"]
     },
     "rootDir": ".",
     "skipDefaultLibCheck": true,

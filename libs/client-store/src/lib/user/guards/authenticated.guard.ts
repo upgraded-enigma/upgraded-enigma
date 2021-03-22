@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { AppUserState } from '../user.store';
 
@@ -14,12 +14,13 @@ export class AppAuthenticatedGuard implements CanActivate {
 
   public canActivate(): Observable<boolean | UrlTree> {
     return this.store.selectOnce(AppUserState.model).pipe(
-      first(),
       map(user => {
-        if (!Boolean(user.token) && Boolean(user.email)) {
+        if (!Boolean(user.token) || !Boolean(user.email)) {
+          const alertText =
+            'To access data you need to log in first. You will be redirected to the login page.';
           // eslint-disable-next-line no-alert -- needed here
-          window.alert('to access data you need to log in first');
-          return this.router.createUrlTree(['login']);
+          window.alert(alertText);
+          return this.router.createUrlTree(['/user', 'auth']);
         }
         return Boolean(user.token) ? true : false;
       }),
