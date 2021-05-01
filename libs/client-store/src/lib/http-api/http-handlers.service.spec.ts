@@ -185,8 +185,8 @@ describe('AppHttpHandlersService', () => {
         void service
           .handleError(errRes)
           .pipe(
-            catchError((error: string) => {
-              expect(error).toEqual(service.getErrorMessage(errRes));
+            catchError((error: Error) => {
+              expect(error).toEqual(new Error(service.getErrorMessage(errRes)));
               return of(null);
             }),
           )
@@ -201,8 +201,8 @@ describe('AppHttpHandlersService', () => {
         void service
           .handleError(errRes)
           .pipe(
-            catchError((error: string) => {
-              expect(error).toEqual(service.getErrorMessage(errRes));
+            catchError((error: Error) => {
+              expect(error).toEqual(new Error(service.getErrorMessage(errRes)));
               return of(null);
             }),
           )
