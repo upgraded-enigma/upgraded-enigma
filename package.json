@@ -110,12 +110,6 @@
     "workspace:update:check": "ng run tools:update-check",
     "workspace:update:migrate": "ng run tools:update-migrate"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint:changed",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "dependencies": {
     "@angular/animations": "11.2.13",
     "@angular/cdk": "11.2.12",
