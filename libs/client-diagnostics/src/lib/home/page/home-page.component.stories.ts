@@ -1,8 +1,10 @@
-import { DOCUMENT, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { APP_BASE_HREF, DOCUMENT, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
 import { Args, Story } from '@storybook/angular/types-6-0';
 import { AppClientMaterialModule } from '@upgraded-enigma/client-material';
+import { AppHttpProgressModule } from '@upgraded-enigma/client-store';
 import { documentFactory, WEB_CLIENT_APP_ENV, WINDOW, windowFactory } from '@upgraded-enigma/client-util';
 
 import { AppHomePage } from './home-page.component';
@@ -22,7 +24,13 @@ export default {
 
 const story: Story<AppHomePage> = (args: Args) => ({
   moduleMetadata: {
-    imports: [BrowserAnimationsModule, FlexLayoutModule, AppClientMaterialModule.forRoot()],
+    imports: [
+      BrowserAnimationsModule,
+      FlexLayoutModule,
+      AppClientMaterialModule.forRoot(),
+      AppHttpProgressModule.forRoot(),
+      NgxsModule.forRoot([]),
+    ],
     providers: [
       {
         provide: LocationStrategy,
@@ -30,6 +38,7 @@ const story: Story<AppHomePage> = (args: Args) => ({
       },
       { provide: WINDOW, useFactory: windowFactory },
       { provide: DOCUMENT, useFactory: documentFactory },
+      { provide: APP_BASE_HREF, useValue: '/' },
       {
         provide: WEB_CLIENT_APP_ENV,
         useValue: testingEnvironment,

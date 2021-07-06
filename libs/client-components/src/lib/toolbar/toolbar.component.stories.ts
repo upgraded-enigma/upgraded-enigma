@@ -1,10 +1,22 @@
 import { APP_BASE_HREF, DOCUMENT, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NgxsModule } from '@ngxs/store';
 import { Args, Story } from '@storybook/angular/types-6-0';
 import { AppClientMaterialModule } from '@upgraded-enigma/client-material';
-import { AppChatbotState, AppSidebarState, AppUserState } from '@upgraded-enigma/client-store';
+import { AppClientPipesModule } from '@upgraded-enigma/client-pipes';
+import {
+  AppChatbotModule,
+  AppChatbotState,
+  AppHttpProgressModule,
+  AppSidebarModule,
+  AppSidebarState,
+  AppUserModule,
+  AppUserState,
+} from '@upgraded-enigma/client-store';
+import { AppClientTranslateModule } from '@upgraded-enigma/client-translate';
 import { documentFactory, IButton, WEB_CLIENT_APP_ENV, WINDOW, windowFactory } from '@upgraded-enigma/client-util';
 
 import { AppToolbarComponent } from './toolbar.component';
@@ -66,8 +78,16 @@ const story: Story<AppToolbarComponent> = (args: Args) => ({
     imports: [
       BrowserAnimationsModule,
       FlexLayoutModule,
+      HttpClientModule,
+      RouterTestingModule,
       NgxsModule.forRoot([AppSidebarState, AppChatbotState, AppUserState]),
       AppClientMaterialModule.forRoot(),
+      AppHttpProgressModule.forRoot(),
+      AppClientTranslateModule,
+      AppClientPipesModule,
+      AppUserModule,
+      AppChatbotModule,
+      AppSidebarModule,
     ],
     providers: [
       {

@@ -2,10 +2,13 @@ import { APP_BASE_HREF, DOCUMENT, LocationStrategy, PathLocationStrategy } from 
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 import { NgxsModule } from '@ngxs/store';
 import { Args, Story } from '@storybook/angular/types-6-0';
 import { AppClientMaterialModule } from '@upgraded-enigma/client-material';
-import { AppHttpApiModule, AppUserState } from '@upgraded-enigma/client-store';
+import { AppClientPipesModule } from '@upgraded-enigma/client-pipes';
+import { AppHttpProgressModule, AppUserModule, AppUserState } from '@upgraded-enigma/client-store';
+import { AppClientTranslateModule } from '@upgraded-enigma/client-translate';
 import { documentFactory, WEB_CLIENT_APP_ENV, WINDOW, windowFactory } from '@upgraded-enigma/client-util';
 
 import { AppNavbarComponent } from './navbar.component';
@@ -28,10 +31,14 @@ const story: Story<AppNavbarComponent> = (args: Args) => ({
     imports: [
       BrowserAnimationsModule,
       FlexLayoutModule,
-      AppClientMaterialModule.forRoot(),
       HttpClientModule,
+      RouterTestingModule,
+      AppClientMaterialModule.forRoot(),
       NgxsModule.forRoot([AppUserState]),
-      AppHttpApiModule,
+      AppUserModule,
+      AppHttpProgressModule.forRoot(),
+      AppClientTranslateModule,
+      AppClientPipesModule,
     ],
     providers: [
       {
