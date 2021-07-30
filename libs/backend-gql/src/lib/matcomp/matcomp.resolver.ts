@@ -1,6 +1,6 @@
+import { MatcompArgs, MatcompModel, MatcompSubscription, NewMatcompInputDto } from '@app/backend-interfaces';
 import { Inject, NotFoundException, UseGuards } from '@nestjs/common';
 import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
-import { MatcompArgs, MatcompModel, MatcompSubscription, NewMatcompInputDto } from '@upgraded-enigma/backend-interfaces';
 import { PubSub } from 'graphql-subscriptions';
 
 import { BackendMatcompGuard } from './matcomp.guard';

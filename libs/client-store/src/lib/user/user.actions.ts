@@ -1,4 +1,4 @@
-import { actionPayloadConstructor, IActionPayload } from '@upgraded-enigma/client-util';
+import { actionPayloadConstructor, IActionPayload } from '@app/client-util';
 
 import { IUserPassword, IUserStatePayload, USER_STATE_TOKEN } from './user.interface';
 

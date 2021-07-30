@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Inject, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { IWebClientAppEnvironment, WEB_CLIENT_APP_ENV } from '@upgraded-enigma/client-util';
+import { IWebClientAppEnvironment, WEB_CLIENT_APP_ENV } from '@app/client-util';
 
 @Component({
   selector: 'app-root',

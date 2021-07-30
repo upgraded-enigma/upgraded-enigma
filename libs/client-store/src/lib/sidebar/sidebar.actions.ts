@@ -1,4 +1,4 @@
-import { actionPayloadConstructor } from '@upgraded-enigma/client-util';
+import { actionPayloadConstructor } from '@app/client-util';
 
 import { SIDEBAR_STATE_TOKEN, TSidebarPayload } from './sidebar.interface';
 

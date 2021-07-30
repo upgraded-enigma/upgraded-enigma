@@ -1,4 +1,4 @@
-import { actionPayloadConstructor } from '@upgraded-enigma/client-util';
+import { actionPayloadConstructor } from '@app/client-util';
 
 import { HTTP_PROGRESS_STATE_TOKEN, THttpProgressPayload, TShowToastPayload } from './http-progress.interface';
 

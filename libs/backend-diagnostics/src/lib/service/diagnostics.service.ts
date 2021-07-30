@@ -1,5 +1,5 @@
+import { Message } from '@app/backend-interfaces';
 import { Injectable } from '@nestjs/common';
-import { Message } from '@upgraded-enigma/backend-interfaces';
 import { execSync } from 'child_process';
 import * as dotenv from 'dotenv';
 import * as os from 'os';

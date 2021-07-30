@@ -1,5 +1,5 @@
+import { IUser, IUserPassword, IUserStatus, userObject, userStatusObject } from '@app/backend-interfaces';
 import { Injectable } from '@nestjs/common';
-import { IUser, IUserPassword, IUserStatus, userObject, userStatusObject } from '@upgraded-enigma/backend-interfaces';
 import * as fs from 'fs';
 import { Glob } from 'glob';
 import { Observable } from 'rxjs';

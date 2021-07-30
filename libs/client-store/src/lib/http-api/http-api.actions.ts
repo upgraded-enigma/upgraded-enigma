@@ -1,4 +1,4 @@
-import { actionPayloadConstructor } from '@upgraded-enigma/client-util';
+import { actionPayloadConstructor } from '@app/client-util';
 
 import { HTTP_API_STATE_TOKEN } from './http-api.interface';
 

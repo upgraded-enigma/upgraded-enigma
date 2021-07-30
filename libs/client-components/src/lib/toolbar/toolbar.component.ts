@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, Input } from '@angular/core';
+import { AppSidebarState, AppUserState, chatbotActions, sidebarActions, userActions } from '@app/client-store';
+import { IButton, WINDOW } from '@app/client-util';
 import { Store } from '@ngxs/store';
-import { AppSidebarState, AppUserState, chatbotActions, sidebarActions, userActions } from '@upgraded-enigma/client-store';
-import { IButton, WINDOW } from '@upgraded-enigma/client-util';
 import { map } from 'rxjs/operators';
 
 @Component({

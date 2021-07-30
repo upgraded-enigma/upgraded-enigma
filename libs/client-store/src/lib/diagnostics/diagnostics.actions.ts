@@ -1,4 +1,4 @@
-import { actionPayloadConstructor, IActionPayload } from '@upgraded-enigma/client-util';
+import { actionPayloadConstructor, IActionPayload } from '@app/client-util';
 
 import { DIAGNOSTICS_STATE_TOKEN, IDiagnosticsState } from './diagnostics.interface';
 

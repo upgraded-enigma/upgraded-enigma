@@ -1,4 +1,4 @@
-import { actionPayloadConstructor } from '@upgraded-enigma/client-util';
+import { actionPayloadConstructor } from '@app/client-util';
 
 import { THEME_STATE_TOKEN, TThemePayload } from './theme.interface';
 

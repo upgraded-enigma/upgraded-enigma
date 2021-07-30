@@ -1,5 +1,5 @@
+import { ApiEnvironment } from '@app/backend-interfaces';
 import { ClientOptions, Transport } from '@nestjs/microservices';
-import { ApiEnvironment } from '@upgraded-enigma/backend-interfaces';
 import { join } from 'path';
 
 export const GRPC_CLIENT_PACKAGE = 'GRPC_CLIENT_PACKAGE';

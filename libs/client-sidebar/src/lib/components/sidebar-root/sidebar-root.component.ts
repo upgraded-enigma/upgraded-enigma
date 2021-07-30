@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AppHttpProgressState, sidebarActions } from '@app/client-store';
 import { Navigate } from '@ngxs/router-plugin';
 import { Store } from '@ngxs/store';
-import { AppHttpProgressState, sidebarActions } from '@upgraded-enigma/client-store';
 import { map } from 'rxjs';
 
 @Component({

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { AppThemeState, themeActions } from '@app/client-store';
 import { Store } from '@ngxs/store';
-import { AppThemeState, themeActions } from '@upgraded-enigma/client-store';
 import { tap } from 'rxjs';
 
 @Component({
