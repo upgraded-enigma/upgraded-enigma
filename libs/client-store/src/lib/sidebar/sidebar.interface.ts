@@ -1,11 +1,14 @@
 import { StateToken } from '@ngxs/store';
+import { IActionPayload } from '@upgraded-enigma/client-util';
 
-export interface ISiedbarUiState {
+export interface ISiedbarState {
   sidebarOpened: boolean;
 }
 
-export const sidebarUiInitialState: ISiedbarUiState = {
+export const sidebarUiInitialState: ISiedbarState = {
   sidebarOpened: false,
 };
 
-export const SIDEBAR_STATE_TOKEN = new StateToken<ISiedbarUiState>('sidebar');
+export type TSidebarPayload = IActionPayload<ISiedbarState>;
+
+export const SIDEBAR_STATE_TOKEN = new StateToken<ISiedbarState>('sidebar');

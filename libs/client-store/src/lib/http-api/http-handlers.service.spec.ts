@@ -10,13 +10,13 @@ import { ExecutionResult, GraphQLError } from 'graphql';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { AppHttpProgressModule } from '../http-progress/http-progress.module';
+import { AppHttpProgressStoreModule } from '../http-progress/http-progress.module';
 import { AppToasterService, toasterServiceProvider } from '../http-progress/services/toaster/toaster.service';
 import { AppHttpHandlersService } from './http-handlers.service';
 
 describe('AppHttpHandlersService', () => {
   const testBedMetadata: TestModuleMetadata = newTestBedMetadata({
-    imports: [AppClientTranslateModule.forRoot(), AppHttpProgressModule.forRoot()],
+    imports: [AppClientTranslateModule.forRoot(), AppHttpProgressStoreModule.forRoot()],
     providers: [toasterServiceProvider],
   });
   const testBedConfig: TestModuleMetadata = getTestBedConfig(testBedMetadata);

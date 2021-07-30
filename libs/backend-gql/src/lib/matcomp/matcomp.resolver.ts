@@ -23,7 +23,7 @@ export class BackendMatcompResolver {
     id: string,
   ) {
     const matcomp = this.service.findOneById(id);
-    if (!Boolean(matcomp)) {
+    if (!matcomp) {
       throw new NotFoundException(id);
     }
     return matcomp;

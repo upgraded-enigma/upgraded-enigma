@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, HostBinding, HostListener, Inject, Input } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { AppSidebarState, AppUserState, chatbotActions, sidebarUiActions, userActions } from '@upgraded-enigma/client-store';
+import { AppSidebarState, AppUserState, chatbotActions, sidebarActions, userActions } from '@upgraded-enigma/client-store';
 import { IButton, WINDOW } from '@upgraded-enigma/client-util';
 import { map } from 'rxjs/operators';
 
@@ -69,7 +69,7 @@ export class AppToolbarComponent {
   constructor(public readonly store: Store, @Inject(WINDOW) private readonly win: Window) {}
 
   public toggleSidebar(): void {
-    void this.store.dispatch(new sidebarUiActions.toggleSidebar());
+    void this.store.dispatch(new sidebarActions.toggleSidebar());
   }
 
   public toggleChatbot(): void {

@@ -58,7 +58,7 @@ export class AppElementsModule implements DoBootstrap {
     const chatbotWidget = createCustomElement<AppChatbotWidgetRootComponent>(AppChatbotWidgetRootComponent, {
       injector: this.injector,
     });
-    if (!Boolean(this.window.customElements.get('app-chatbot-widget-root'))) {
+    if (typeof this.window.customElements.get('app-chatbot-widget-root') === 'undefined') {
       this.window.customElements.define('app-chatbot-widget-root', chatbotWidget);
     }
   }

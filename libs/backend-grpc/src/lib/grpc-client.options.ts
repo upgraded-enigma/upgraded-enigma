@@ -11,7 +11,7 @@ const functionsProtoPath = [join(__dirname, 'proto/root.proto')];
  * Proto file paths.
  */
 const protoPaths: (env: ApiEnvironment) => string[] = (env: ApiEnvironment) => {
-  return !Boolean(env.firebase) ? [...localProtoPath] : [...functionsProtoPath];
+  return typeof env.firebase === 'undefined' || !env.firebase ? [...localProtoPath] : [...functionsProtoPath];
 };
 
 const rpcUrl = '0.0.0.0:15001';

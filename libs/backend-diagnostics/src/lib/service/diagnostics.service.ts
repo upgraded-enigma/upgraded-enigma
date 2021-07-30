@@ -11,7 +11,7 @@ export class BackendDiagnosticsService {
   }
 
   private npmVersion() {
-    if (Boolean(process.env.ELECTRON)) {
+    if (typeof process.env.ELECTRON !== 'undefined') {
       return 'N/A';
     }
     let version;
